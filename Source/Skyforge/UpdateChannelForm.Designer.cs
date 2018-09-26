@@ -62,6 +62,7 @@
             this.stableButton.Name = "stableButton";
             this.stableButton.Size = new System.Drawing.Size(137, 35);
             this.stableButton.TabIndex = 2;
+            this.stableButton.TabStop = false;
             this.stableButton.Text = "Stable";
             this.stableButton.UseVisualStyleBackColor = true;
             this.stableButton.Click += new System.EventHandler(this.stableButton_Click);
@@ -72,6 +73,7 @@
             this.betaButton.Name = "betaButton";
             this.betaButton.Size = new System.Drawing.Size(137, 35);
             this.betaButton.TabIndex = 3;
+            this.betaButton.TabStop = false;
             this.betaButton.Text = "Development";
             this.betaButton.UseVisualStyleBackColor = true;
             this.betaButton.Click += new System.EventHandler(this.betaButton_Click);

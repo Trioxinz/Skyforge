@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkyforgeReforge;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -6,11 +7,14 @@ namespace Skyforge
 {
     partial class AboutBox : Form
     {
-        public AboutBox()
+        private UpdateInterface applicationInfo;
+        public AboutBox(UpdateInterface applicationInfo)
         {
             InitializeComponent();
+
+            this.applicationInfo = applicationInfo;
             this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
+            this.labelProductName.Text = applicationInfo.ApplicationName;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;

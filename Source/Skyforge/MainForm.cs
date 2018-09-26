@@ -57,7 +57,7 @@ namespace Skyforge
         {
             get
             {
-                if (readSFDATA(1))
+                if (readSFDATA(1, 0x01))
                 {
                     return new Uri("https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/update.xml");
                 }
@@ -78,7 +78,7 @@ namespace Skyforge
 
         private string isBeta()
         {
-            if(readSFDATA(1))
+            if(readSFDATA(1, 0x01))
             {
                 return "Dev";
             }
@@ -88,7 +88,7 @@ namespace Skyforge
             }
         }
 
-        private Boolean readSFDATA(int byteToCheck)
+        private Boolean readSFDATA(int byteToCheck, byte byteToCheckFor)
         {
             if (programData == null)
             {
@@ -102,13 +102,11 @@ namespace Skyforge
                 }
                 else
                 {
-                    programData = new byte[] { 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30 };
+                    programData = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                     try
                     {
-                        FileStream outStream = new FileStream("SFDATA.dat", FileMode.OpenOrCreate, FileAccess.Write);
-                        outStream.Write(programData, 0, programData.Length);
-                        outStream.Close();
-                        //File.SetAttributes("SF.dat", File.GetAttributes("SF.dat") | FileAttributes.Hidden);
+                        writeSFDATA();
+                        
                     }
                     catch (UnauthorizedAccessException)
                     {
@@ -117,7 +115,7 @@ namespace Skyforge
                     }
                 }
             }
-            if (programData[byteToCheck] == 0x31)
+            if (programData[byteToCheck] == byteToCheckFor)
             {
                 return true;
             }
@@ -131,12 +129,15 @@ namespace Skyforge
         {
             try
             {
-                FileStream outStream = new FileStream("SFDATA.dat", FileMode.OpenOrCreate, FileAccess.Write);
-                outStream.Write(programData, 0, programData.Length);
-                outStream.Close();
+                using (var outStream = new FileStream("SFDATA.dat", FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    outStream.Write(programData, 0, programData.Length);
+                }
+                //File.SetAttributes("SF.dat", File.GetAttributes("SF.dat") | FileAttributes.Hidden);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Exception caught in process: {0}", ex);
             }
         }
 
@@ -151,11 +152,14 @@ namespace Skyforge
         #region Form loading methods
         private void MainForm_Load(object sender, EventArgs e)
         {
+            bool loaded = readSFDATA(0, 0x00);
+            writeSFDATA();
+            loaded = true;
             isNewInput = false;
             outputter = new TextBoxOutputter(terminalTextBox);
             Console.SetOut(outputter);
             Console.WriteLine("Skyforge" + isBeta() + " v" + this.ApplicationAssembly.GetName().Version.ToString() + " Loaded");
-            if(!readSFDATA(0))
+            if(!readSFDATA(0, 0xe2))
             {
                 Console.WriteLine("Please read and accept the LICENSE....");
                 Console.WriteLine("This can found under Help->LICENSE");
@@ -202,22 +206,22 @@ namespace Skyforge
 
         private void sitchUpdatechannelStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdateChannelForm updateChannel = new UpdateChannelForm(readSFDATA(1));
+            UpdateChannelForm updateChannel = new UpdateChannelForm(readSFDATA(1, 0x01));
             DialogResult dialogResultBeta = updateChannel.ShowDialog();
             if (dialogResultBeta == DialogResult.OK)
             {
-                if (programData[1] == 0x30)
+                if (programData[1] == 0x00)
                 {
-                    programData[1] = 0x31;
+                    programData[1] = 0x01;
                     writeSFDATA();
                     Console.WriteLine("Update Channel set to development branch...");
                 }
             }
             else if(dialogResultBeta == DialogResult.Cancel)
             {
-                if (programData[1] == 0x31)
+                if (programData[1] == 0x01)
                 {
-                    programData[1] = 0x30;
+                    programData[1] = 0x00;
                     writeSFDATA();
                     Console.WriteLine("Update Channel set to stable branch...");
                 }
@@ -230,9 +234,9 @@ namespace Skyforge
             DialogResult dialogResultBeta = license.ShowDialog();
             if (dialogResultBeta == DialogResult.OK)
             {
-                if (programData[0] == 0x30)
+                if (programData[0] == 0x00)
                 {
-                    programData[0] = 0x31;
+                    programData[0] = 0xe2;
                     writeSFDATA();
                     Console.WriteLine("LICENSE accepted...");
                     selectFolderButton.Enabled = true;
@@ -243,9 +247,9 @@ namespace Skyforge
             }
             else if (dialogResultBeta == DialogResult.Cancel)
             {
-                if (programData[0] == 0x31)
+                if (programData[0] == 0xe2)
                 {
-                    programData[0] = 0x30;
+                    programData[0] = 0x00;
                     writeSFDATA();
                     Console.WriteLine("LICENSE rejected...");
                     selectFolderButton.Enabled = false;
@@ -259,7 +263,7 @@ namespace Skyforge
 
         private void aboutSkyforgeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutBox about = new AboutBox();
+            AboutBox about = new AboutBox(this);
             about.ShowDialog();
         }
         #endregion
