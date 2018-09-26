@@ -1,4 +1,4 @@
-﻿namespace UpdateDLL
+﻿namespace SkyforgeReforge
 {
     partial class UpdateInfoForm
     {

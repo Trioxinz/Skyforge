@@ -109,7 +109,7 @@
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -171,6 +171,7 @@
             this.folderTextBox.Name = "folderTextBox";
             this.folderTextBox.Size = new System.Drawing.Size(337, 20);
             this.folderTextBox.TabIndex = 3;
+            this.folderTextBox.TabStop = false;
             this.folderTextBox.Text = "Please select a folder containing the mod files to work with";
             this.folderTextBox.TextChanged += new System.EventHandler(this.folderTextBox_TextChanged);
             // 
@@ -180,6 +181,7 @@
             this.selectFolderButton.Name = "selectFolderButton";
             this.selectFolderButton.Size = new System.Drawing.Size(125, 35);
             this.selectFolderButton.TabIndex = 4;
+            this.selectFolderButton.TabStop = false;
             this.selectFolderButton.Text = "Select Folder";
             this.selectFolderButton.UseVisualStyleBackColor = true;
             this.selectFolderButton.Click += new System.EventHandler(this.selectFolderButton_Click);
@@ -191,6 +193,7 @@
             this.convertModButton.Name = "convertModButton";
             this.convertModButton.Size = new System.Drawing.Size(128, 38);
             this.convertModButton.TabIndex = 5;
+            this.convertModButton.TabStop = false;
             this.convertModButton.Text = "Convert Mod";
             this.convertModButton.UseVisualStyleBackColor = true;
             this.convertModButton.Click += new System.EventHandler(this.convertModButton_Click);
@@ -202,6 +205,7 @@
             this.convertOnlyButton.Name = "convertOnlyButton";
             this.convertOnlyButton.Size = new System.Drawing.Size(128, 38);
             this.convertOnlyButton.TabIndex = 6;
+            this.convertOnlyButton.TabStop = false;
             this.convertOnlyButton.Text = "Convert Only";
             this.convertOnlyButton.UseVisualStyleBackColor = true;
             this.convertOnlyButton.Click += new System.EventHandler(this.convertOnlyButton_Click);
@@ -213,6 +217,7 @@
             this.packModButton.Name = "packModButton";
             this.packModButton.Size = new System.Drawing.Size(128, 38);
             this.packModButton.TabIndex = 7;
+            this.packModButton.TabStop = false;
             this.packModButton.Text = "Pack Mod";
             this.packModButton.UseVisualStyleBackColor = true;
             this.packModButton.Click += new System.EventHandler(this.packModButton_Click);
@@ -224,6 +229,7 @@
             this.loadOrderButton.Name = "loadOrderButton";
             this.loadOrderButton.Size = new System.Drawing.Size(128, 38);
             this.loadOrderButton.TabIndex = 8;
+            this.loadOrderButton.TabStop = false;
             this.loadOrderButton.Text = "Load Order";
             this.loadOrderButton.UseVisualStyleBackColor = true;
             this.loadOrderButton.Click += new System.EventHandler(this.loadOrderButton_Click);
@@ -235,6 +241,7 @@
             this.unpackModButton.Name = "unpackModButton";
             this.unpackModButton.Size = new System.Drawing.Size(128, 38);
             this.unpackModButton.TabIndex = 9;
+            this.unpackModButton.TabStop = false;
             this.unpackModButton.Text = "Unpack Mod";
             this.unpackModButton.UseVisualStyleBackColor = true;
             this.unpackModButton.Click += new System.EventHandler(this.unpackModButton_Click);
@@ -246,6 +253,7 @@
             this.repackModButton.Name = "repackModButton";
             this.repackModButton.Size = new System.Drawing.Size(128, 38);
             this.repackModButton.TabIndex = 10;
+            this.repackModButton.TabStop = false;
             this.repackModButton.Text = "Repack Mod";
             this.repackModButton.UseVisualStyleBackColor = true;
             this.repackModButton.Click += new System.EventHandler(this.repackModButton_Click);
@@ -257,6 +265,7 @@
             this.fileCheckSkipCheckBox.Name = "fileCheckSkipCheckBox";
             this.fileCheckSkipCheckBox.Size = new System.Drawing.Size(185, 17);
             this.fileCheckSkipCheckBox.TabIndex = 12;
+            this.fileCheckSkipCheckBox.TabStop = false;
             this.fileCheckSkipCheckBox.Text = "Skip TES:V mod file format check";
             this.fileCheckSkipCheckBox.UseVisualStyleBackColor = true;
             this.fileCheckSkipCheckBox.CheckedChanged += new System.EventHandler(this.fileCheckSkipCheckBox_CheckedChanged);
