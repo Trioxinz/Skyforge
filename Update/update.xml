@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<update appId="SkyforgeBeta">
+    <version>0.0.1.0</version>
+    <!--
+    0.0.1.0 -> ?
+    ?
+    -->
+    <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/DevelopmentUpdate.exe</url>
+    <fileName>Skyforge.exe</fileName>
+    <md5>96b19376ed864d09db9d01f4861c9415</md5>
+    <description>Implemented features in this update:
+    Placeholder
+    </description>
+    <launchArgs></launchArgs>
+</update>
+<update appId="Skyforge">
+    <version>0.0.1.0</version>
+    <!--
+    0.0.1.0 -> ?
+    ?
+    -->
+    <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Master/Update/release_v0.0.1.0.exe</url>
+    <fileName>Skyforge.exe</fileName>
+    <md5>00000000000000000000000000000000</md5>
+    <description>Implemented features in this update:
+    Placeholder
+    </description>
+    <launchArgs></launchArgs>
+</update>
