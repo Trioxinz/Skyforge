@@ -14,12 +14,12 @@ namespace Skyforge
         private static string applicationName = "Skyforge";
         private static string applicationID = applicationName;
         private string[] args;
-        private byte[] programData;// Should be 7 bytes
-        
-
+        private byte[] programData;
+        private bool isNewInput;
+        private bool skipFileCheck;
         private Updater update;
         private TextBoxOutputter outputter;
-        private Boolean isNewInput;
+        
 
         public string ApplicationName
         {
@@ -154,7 +154,7 @@ namespace Skyforge
             isNewInput = false;
             outputter = new TextBoxOutputter(terminalTextBox);
             Console.SetOut(outputter);
-            Console.WriteLine("Skyforged v" + this.ApplicationAssembly.GetName().Version.ToString() + " Loaded");
+            Console.WriteLine("Skyforge v" + this.ApplicationAssembly.GetName().Version.ToString() + " Loaded");
             if(!readSFDATA(0))
             {
                 Console.WriteLine("Please read and accept the LICENSE....");
@@ -162,6 +162,7 @@ namespace Skyforge
                 selectFolderButton.Enabled = false;
                 folderTextBox.Enabled = false;
                 fileListView.Enabled = false;
+                fileCheckSkipCheckBox.Enabled = false;
             }
         }
 
@@ -237,6 +238,7 @@ namespace Skyforge
                     selectFolderButton.Enabled = true;
                     folderTextBox.Enabled = true;
                     fileListView.Enabled = true;
+                    fileCheckSkipCheckBox.Enabled = true;
                 }
             }
             else if (dialogResultBeta == DialogResult.Cancel)
@@ -249,6 +251,8 @@ namespace Skyforge
                     selectFolderButton.Enabled = false;
                     folderTextBox.Enabled = false;
                     fileListView.Enabled = false;
+                    fileCheckSkipCheckBox.Enabled = false;
+                    folderTextBox.Text = "Please select a folder containing the mod files to work with";
                 }
             }
         }
@@ -260,28 +264,7 @@ namespace Skyforge
         }
         #endregion
 
-        private void startAction(string batchFile, string folderArg)
-        {
-            var processStartInfo = new ProcessStartInfo(batchFile, folderArg);
-
-            processStartInfo.UseShellExecute = false;
-            processStartInfo.ErrorDialog = false;
-
-            processStartInfo.RedirectStandardError = true;
-            processStartInfo.RedirectStandardInput = true;
-            processStartInfo.RedirectStandardOutput = true;
-            processStartInfo.CreateNoWindow = true;
-
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            bool processStarted = process.Start();
-
-            StreamWriter inputWriter = process.StandardInput;
-            StreamReader outputReader = process.StandardOutput;
-            StreamReader errorReader = process.StandardError;
-            process.WaitForExit();
-        }
-
+        #region Main form logic
         private void selectFolderButton_Click(object sender, EventArgs e)
         {
                 DialogResult result = folderBrowserDialog1.ShowDialog();
@@ -292,18 +275,50 @@ namespace Skyforge
                 }
         }
 
+        private void fileCheckSkipCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            skipFileCheck = fileCheckSkipCheckBox.Checked;
+            refreshFileList();
+        }
+
         private void folderTextBox_TextChanged(object sender, EventArgs e)
+        {
+            refreshFileList();
+        }
+
+        private void refreshFileList()
         {
             fileListView.Items.Clear();
             try
             {
                 string[] files = Directory.GetFiles(folderTextBox.Text);
+                string[] folders = Directory.GetDirectories(folderTextBox.Text);
+                foreach (string folder in folders)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = "\\" + Path.GetFileName(folder);
+                    fileListView.Items.Add(item);
+                }
                 foreach (string file in files)
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(file);
-                    ListViewItem item = new ListViewItem(fileName);
-                    item.Tag = file;
-                    fileListView.Items.Add(item);
+                    string fileExt = Path.GetExtension(file);
+                    if (skipFileCheck)
+                    {
+                        string fileName = Path.GetFileName(file);
+                        ListViewItem item = new ListViewItem(fileName);
+                        item.Tag = file;
+                        fileListView.Items.Add(item);
+                    }
+                    else
+                    {
+                        if ((fileExt == ".bsa") || (fileExt == ".esm") || (fileExt == ".esp") || (fileExt == ".pex") || (fileExt == ".dds") || (fileExt == ".lod") || (fileExt == ".strings") || (fileExt == ".dlstrings") || (fileExt == ".ilstrings"))
+                        {
+                            string fileName = Path.GetFileName(file);
+                            ListViewItem item = new ListViewItem(fileName);
+                            item.Tag = file;
+                            fileListView.Items.Add(item);
+                        }
+                    }
                 }
             }
             catch (FileNotFoundException)
@@ -312,6 +327,137 @@ namespace Skyforge
             catch (IOException)
             {
             }
+
+            if (fileListView.Items.Count > 0)
+            {
+                convertModButton.Enabled = true;
+                convertOnlyButton.Enabled = true;
+                packModButton.Enabled = true;
+                repackModButton.Enabled = true;
+                unpackModButton.Enabled = true;
+                loadOrderButton.Enabled = true;
+            }
+            else
+            {
+                convertModButton.Enabled = false;
+                convertOnlyButton.Enabled = false;
+                packModButton.Enabled = false;
+                repackModButton.Enabled = false;
+                unpackModButton.Enabled = false;
+                loadOrderButton.Enabled = false;
+            }
         }
+
+        private void convertModButton_Click(object sender, EventArgs e)
+        {
+            startAction("CONVERT_MOD.BAT");
+        }
+
+        private void convertOnlyButton_Click(object sender, EventArgs e)
+        {
+            startAction("CONVERT_ONLY.BAT");
+        }
+
+        private void packModButton_Click(object sender, EventArgs e)
+        {
+            startAction("PACK_MOD.BAT");
+        }
+
+        private void unpackModButton_Click(object sender, EventArgs e)
+        {
+            startAction("UNPACK_MOD.BAT");
+        }
+
+        private void repackModButton_Click(object sender, EventArgs e)
+        {
+            startAction("REPACK_MOD.BAT");
+        }
+
+        private void loadOrderButton_Click(object sender, EventArgs e)
+        {
+            startAction("LOAD_ORDER.BAT");
+        }
+        #endregion
+
+        #region Toolkit backend logic
+        private void startAction(string batchFile)
+        {
+            convertModButton.Enabled = false;
+            convertOnlyButton.Enabled = false;
+            packModButton.Enabled = false;
+            repackModButton.Enabled = false;
+            unpackModButton.Enabled = false;
+            loadOrderButton.Enabled = false;
+            selectFolderButton.Enabled = false;
+            folderTextBox.Enabled = false;
+            fileListView.Enabled = false;
+            fileCheckSkipCheckBox.Enabled = false;
+            try
+            {
+                using (Process proc = new Process())
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo(Environment.CurrentDirectory + "\\Skyrim-NX-Toolkit\\" + batchFile);
+                    startInfo.Arguments = "\"" + folderTextBox.Text + "\"";
+                    startInfo.WorkingDirectory = Environment.CurrentDirectory + "\\Skyrim-NX-Toolkit\\";
+                    startInfo.RedirectStandardOutput = true;
+                    startInfo.RedirectStandardError = true;
+                    startInfo.UseShellExecute = false;
+                    startInfo.CreateNoWindow = true;
+                    proc.EnableRaisingEvents = true;
+                    proc.StartInfo = startInfo;
+                    proc.Start();
+                    proc.BeginOutputReadLine();
+                    proc.OutputDataReceived += p_OutputDataReceived;
+                    proc.ErrorDataReceived += p_ErrorDataReceived;
+                    proc.Exited += new EventHandler(p_ProcessExited);
+                }
+            }
+            catch (Exception ex)
+            {
+                convertModButton.Enabled = true;
+                convertOnlyButton.Enabled = true;
+                packModButton.Enabled = true;
+                repackModButton.Enabled = true;
+                unpackModButton.Enabled = true;
+                loadOrderButton.Enabled = true;
+                selectFolderButton.Enabled = true;
+                folderTextBox.Enabled = true;
+                fileListView.Enabled = true;
+                fileCheckSkipCheckBox.Enabled = true;
+                Console.WriteLine(ex);
+            }
+        }
+
+        static void p_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Process p = sender as Process;
+            if (p == null)
+                return;
+            Console.WriteLine(e.Data);
+        }
+
+        static void p_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Process p = sender as Process;
+            if (p == null)
+                return;
+            Console.WriteLine(e.Data);
+        }
+
+        internal void p_ProcessExited(object sender, System.EventArgs e)
+        {
+            convertModButton.Enabled = true;
+            convertOnlyButton.Enabled = true;
+            packModButton.Enabled = true;
+            repackModButton.Enabled = true;
+            unpackModButton.Enabled = true;
+            loadOrderButton.Enabled = true;
+            selectFolderButton.Enabled = true;
+            folderTextBox.Enabled = true;
+            fileListView.Enabled = true;
+            fileCheckSkipCheckBox.Enabled = true;
+            Console.WriteLine("Completed task...");
+        }
+        #endregion
     }
 }

@@ -43,7 +43,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UpdateDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UpdateDLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7c62afd518263372, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\UpdateDLL.dll</HintPath>
     </Reference>
@@ -114,9 +114,7 @@
     <EmbeddedResource Include="EMB_LIC.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UpdateDLL.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="UpdateDLL.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
