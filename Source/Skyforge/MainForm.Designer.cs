@@ -100,6 +100,7 @@
             this.fileDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitMenuItem});
             this.fileDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.fileDownButton.Margin = new System.Windows.Forms.Padding(12, 1, 0, 2);
             this.fileDownButton.Name = "fileDownButton";
             this.fileDownButton.Size = new System.Drawing.Size(38, 22);
             this.fileDownButton.Text = "File";
@@ -108,7 +109,7 @@
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
