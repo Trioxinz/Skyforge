@@ -25,7 +25,7 @@ namespace Skyforge
         {
             get
             {
-                return applicationName;
+                return applicationName + isBeta();
             }
         }
 
@@ -80,7 +80,7 @@ namespace Skyforge
         {
             if(readSFDATA(1))
             {
-                return "Beta";
+                return "Dev";
             }
             else
             {
@@ -154,7 +154,7 @@ namespace Skyforge
             isNewInput = false;
             outputter = new TextBoxOutputter(terminalTextBox);
             Console.SetOut(outputter);
-            Console.WriteLine("Skyforge v" + this.ApplicationAssembly.GetName().Version.ToString() + " Loaded");
+            Console.WriteLine("Skyforge" + isBeta() + " v" + this.ApplicationAssembly.GetName().Version.ToString() + " Loaded");
             if(!readSFDATA(0))
             {
                 Console.WriteLine("Please read and accept the LICENSE....");
