@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
 <update appId="SkyforgeBeta">
-    <version>0.0.1.0</version>
+    <version>0.0.2.0</version>
     <!--
-    0.0.1.0 -> ?
+    0.0.2.0 -> ?
     ?
     -->
     <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/DevelopmentUpdate.exe</url>
     <fileName>Skyforge.exe</fileName>
-    <md5>13dd01d42a18cac9ac68acfe7c47260e</md5>
+    <md5>90095ac2b98a3681bb1a50c4fa53c797</md5>
     <description>Implemented features in this update:
     Added folder logic
     Added basic Skyrim-NX-Tool function
+    Fixed/Tightened Security
     </description>
     <launchArgs></launchArgs>
 </update>
