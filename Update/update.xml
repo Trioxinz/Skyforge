@@ -15,18 +15,19 @@
         <launchArgs></launchArgs>
     </update>
     <update appId="SkyforgeDev">
-        <version>0.0.3.0</version>
+        <version>0.0.4.0</version>
         <!--
-        0.0.2.0 -> ?
+        0.0.4.0 -> ?
         ?
         -->
         <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/DevelopmentUpdate.exe</url>
         <fileName>Skyforge.exe</fileName>
-        <md5>a142826000f0dc48cb5e3864b5f26831</md5>
+        <md5>15aa39a46a7521ff0c7a389bac149d9c</md5>
         <description>Implemented features in this update:
         Added folder logic
         Added basic Skyrim-NX-Tool function
         Fixed/Tightened Security
+        Implemented .dat upgrade path
         </description>
         <launchArgs></launchArgs>
     </update>
