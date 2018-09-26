@@ -25,7 +25,7 @@ namespace Skyforge
         {
             get
             {
-                return applicationName + isBeta();
+                return applicationName;
             }
         }
 
@@ -33,7 +33,7 @@ namespace Skyforge
         {
             get
             {
-                return applicationID;
+                return applicationID + isBeta();
             }
         }
 
