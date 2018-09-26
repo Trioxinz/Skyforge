@@ -1,4 +1,18 @@
 <?xml version="1.0"?>
+<update appId="Skyforge">
+    <version>0.0.0.0</version>
+    <!--
+    0.0.0.0 -> ?
+    ?
+    -->
+    <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Master/Update/release_v0.0.0.0.exe</url>
+    <fileName>Skyforge.exe</fileName>
+    <md5>00000000000000000000000000000000</md5>
+    <description>Implemented features in this update:
+    Placeholder
+    </description>
+    <launchArgs></launchArgs>
+</update>
 <update appId="SkyforgeDev">
     <version>9.9.9.9</version>
     <!--
@@ -12,20 +26,6 @@
     Added folder logic
     Added basic Skyrim-NX-Tool function
     Fixed/Tightened Security
-    </description>
-    <launchArgs></launchArgs>
-</update>
-<update appId="Skyforge">
-    <version>0.0.0.0</version>
-    <!--
-    0.0.0.0 -> ?
-    ?
-    -->
-    <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Master/Update/release_v0.0.0.0.exe</url>
-    <fileName>Skyforge.exe</fileName>
-    <md5>00000000000000000000000000000000</md5>
-    <description>Implemented features in this update:
-    Placeholder
     </description>
     <launchArgs></launchArgs>
 </update>
