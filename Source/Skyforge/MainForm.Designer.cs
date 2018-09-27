@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.terminalTextBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -51,12 +52,15 @@
             this.unpackModButton = new System.Windows.Forms.Button();
             this.repackModButton = new System.Windows.Forms.Button();
             this.fileCheckSkipCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // terminalTextBox
             // 
-            this.terminalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.terminalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.terminalTextBox.BackColor = System.Drawing.Color.Black;
             this.terminalTextBox.Font = new System.Drawing.Font("Consolas", 8.25F);
@@ -156,6 +160,8 @@
             // 
             // fileListView
             // 
+            this.fileListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.fileListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileListView.Location = new System.Drawing.Point(12, 108);
             this.fileListView.Name = "fileListView";
@@ -188,8 +194,9 @@
             // 
             // convertModButton
             // 
+            this.convertModButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.convertModButton.Enabled = false;
-            this.convertModButton.Location = new System.Drawing.Point(788, 41);
+            this.convertModButton.Location = new System.Drawing.Point(6, 19);
             this.convertModButton.Name = "convertModButton";
             this.convertModButton.Size = new System.Drawing.Size(128, 38);
             this.convertModButton.TabIndex = 5;
@@ -200,8 +207,9 @@
             // 
             // convertOnlyButton
             // 
+            this.convertOnlyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.convertOnlyButton.Enabled = false;
-            this.convertOnlyButton.Location = new System.Drawing.Point(788, 85);
+            this.convertOnlyButton.Location = new System.Drawing.Point(6, 63);
             this.convertOnlyButton.Name = "convertOnlyButton";
             this.convertOnlyButton.Size = new System.Drawing.Size(128, 38);
             this.convertOnlyButton.TabIndex = 6;
@@ -212,8 +220,9 @@
             // 
             // packModButton
             // 
+            this.packModButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.packModButton.Enabled = false;
-            this.packModButton.Location = new System.Drawing.Point(788, 129);
+            this.packModButton.Location = new System.Drawing.Point(6, 107);
             this.packModButton.Name = "packModButton";
             this.packModButton.Size = new System.Drawing.Size(128, 38);
             this.packModButton.TabIndex = 7;
@@ -224,8 +233,9 @@
             // 
             // loadOrderButton
             // 
+            this.loadOrderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.loadOrderButton.Enabled = false;
-            this.loadOrderButton.Location = new System.Drawing.Point(788, 261);
+            this.loadOrderButton.Location = new System.Drawing.Point(6, 239);
             this.loadOrderButton.Name = "loadOrderButton";
             this.loadOrderButton.Size = new System.Drawing.Size(128, 38);
             this.loadOrderButton.TabIndex = 8;
@@ -236,8 +246,9 @@
             // 
             // unpackModButton
             // 
+            this.unpackModButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.unpackModButton.Enabled = false;
-            this.unpackModButton.Location = new System.Drawing.Point(788, 173);
+            this.unpackModButton.Location = new System.Drawing.Point(6, 151);
             this.unpackModButton.Name = "unpackModButton";
             this.unpackModButton.Size = new System.Drawing.Size(128, 38);
             this.unpackModButton.TabIndex = 9;
@@ -248,8 +259,9 @@
             // 
             // repackModButton
             // 
+            this.repackModButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.repackModButton.Enabled = false;
-            this.repackModButton.Location = new System.Drawing.Point(788, 217);
+            this.repackModButton.Location = new System.Drawing.Point(6, 195);
             this.repackModButton.Name = "repackModButton";
             this.repackModButton.Size = new System.Drawing.Size(128, 38);
             this.repackModButton.TabIndex = 10;
@@ -270,23 +282,36 @@
             this.fileCheckSkipCheckBox.UseVisualStyleBackColor = true;
             this.fileCheckSkipCheckBox.CheckedChanged += new System.EventHandler(this.fileCheckSkipCheckBox_CheckedChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.convertModButton);
+            this.groupBox1.Controls.Add(this.repackModButton);
+            this.groupBox1.Controls.Add(this.convertOnlyButton);
+            this.groupBox1.Controls.Add(this.unpackModButton);
+            this.groupBox1.Controls.Add(this.packModButton);
+            this.groupBox1.Controls.Add(this.loadOrderButton);
+            this.groupBox1.Location = new System.Drawing.Point(788, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(322, 548);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Toolkit Options";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1122, 601);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.fileCheckSkipCheckBox);
-            this.Controls.Add(this.repackModButton);
-            this.Controls.Add(this.unpackModButton);
-            this.Controls.Add(this.loadOrderButton);
-            this.Controls.Add(this.packModButton);
-            this.Controls.Add(this.convertOnlyButton);
-            this.Controls.Add(this.convertModButton);
             this.Controls.Add(this.selectFolderButton);
             this.Controls.Add(this.folderTextBox);
             this.Controls.Add(this.fileListView);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.terminalTextBox);
+            this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1138, 640);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -294,6 +319,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,5 +349,6 @@
         private System.Windows.Forms.Button unpackModButton;
         private System.Windows.Forms.Button repackModButton;
         private System.Windows.Forms.CheckBox fileCheckSkipCheckBox;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
