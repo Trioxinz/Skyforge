@@ -22,12 +22,13 @@
         -->
         <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/DevelopmentUpdate.exe</url>
         <fileName>Skyforge.exe</fileName>
-        <md5>15aa39a46a7521ff0c7a389bac149d9c</md5>
+        <md5>706d67cbdecffc52a034a02dc4a44bc8</md5>
         <description>Implemented features in this update:
         Added folder logic
         Added basic Skyrim-NX-Tool function
-        Fixed/Tightened Security
+        Fixed/tightened security
         Implemented .dat upgrade path
+        Added icons
         </description>
         <launchArgs></launchArgs>
     </update>
