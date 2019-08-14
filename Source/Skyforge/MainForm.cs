@@ -19,7 +19,6 @@ namespace Skyforge
         private bool skipFileCheck;
         private Updater update;
         private TextBoxOutputter outputter;
-        
 
         public string ApplicationName
         {
@@ -78,14 +77,11 @@ namespace Skyforge
 
         private string isBeta()
         {
-            if(readSFDATA(1, 0x01))
-            {
-                return "Dev";
-            }
-            else
-            {
-                return "";
-            }
+#if DEBUG
+            return "Dev";
+#else
+            return "";
+#endif
         }
 
         private Boolean readSFDATA(int byteToCheck, byte byteToCheckFor)
@@ -413,7 +409,7 @@ namespace Skyforge
                     proc.BeginOutputReadLine();
                     proc.OutputDataReceived += p_OutputDataReceived;
                     proc.ErrorDataReceived += p_ErrorDataReceived;
-                    proc.Exited += new EventHandler(p_ProcessExited);
+                    proc.Exited += p_ProcessExited;
                 }
             }
             catch (Exception ex)
@@ -431,6 +427,20 @@ namespace Skyforge
                 Console.WriteLine(ex);
             }
         }
+        void ProcessExited()
+        {
+            convertModButton.Enabled = true;
+            convertOnlyButton.Enabled = true;
+            packModButton.Enabled = true;
+            repackModButton.Enabled = true;
+            unpackModButton.Enabled = true;
+            loadOrderButton.Enabled = true;
+            selectFolderButton.Enabled = true;
+            folderTextBox.Enabled = true;
+            fileListView.Enabled = true;
+            fileCheckSkipCheckBox.Enabled = true;
+            Console.WriteLine("Completed task...");
+        }
 
         static void p_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
@@ -445,7 +455,18 @@ namespace Skyforge
             Process p = sender as Process;
             if (p == null)
                 return;
-            Console.WriteLine(e.Data);
+            if (!(e.Data == null))
+            {
+                if (!(e.Data.Contains("=Done=")))
+                {
+                    Console.WriteLine(e.Data);
+                }
+                else
+                {
+                    Skyforge.MainForm form = new MainForm(null);
+                    form.ProcessExited();
+                } 
+            }
         }
 
         internal void p_ProcessExited(object sender, System.EventArgs e)

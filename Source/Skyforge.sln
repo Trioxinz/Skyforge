@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyforge", "Skyforge\Skyforge.csproj", "{E28983BC-B119-40C1-836B-385EAC8595EF}"
 EndProject
+# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyforge.base.dll", "Skyforge.base.dll\Skyforge.base.dll.csproj", "{724F292E-99B1-4511-A779-A20DEF15A3BA}"
+# EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E28983BC-B119-40C1-836B-385EAC8595EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E28983BC-B119-40C1-836B-385EAC8595EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E28983BC-B119-40C1-836B-385EAC8595EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724F292E-99B1-4511-A779-A20DEF15A3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724F292E-99B1-4511-A779-A20DEF15A3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724F292E-99B1-4511-A779-A20DEF15A3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724F292E-99B1-4511-A779-A20DEF15A3BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
