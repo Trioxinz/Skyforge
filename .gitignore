@@ -1,10 +1,11 @@
 # Specific files
 SFDATA Breakdown.txt
 
-# TrinetworkSNK
-*.snk
+# TriByteDevelopmentsSNK
+Source/Skyforge/TriByteDevelopments.snk
+Source/Skyforge/TriByteDevelopments.snk.sha256
 
-#Custom staging of integrated replacement dll
+#Custom staging of integrated replacement dll (major overhaul of implementation)
 Skyforge.base.dll/
 
 ## Ignore Visual Studio temporary files, build results, and

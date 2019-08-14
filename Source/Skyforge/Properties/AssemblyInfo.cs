@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Skyforge")]
 [assembly: AssemblyDescription("A Skyrim-NX-Toolkit GUI")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TriNetwork")]
+[assembly: AssemblyCompany("TriByte Developments")]
 [assembly: AssemblyProduct("Skyforge")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.4.0")]
-[assembly: AssemblyFileVersion("0.0.4.0")]
+[assembly: AssemblyVersion("0.0.4.1")]
+[assembly: AssemblyFileVersion("0.0.4.1")]
+[assembly: NeutralResourcesLanguage("en")]
+
