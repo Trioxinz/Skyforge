@@ -11,6 +11,7 @@ namespace SkyforgeReforge
         private Uri uri;
         private string fileName;
         private string md5;
+        private string sha512;
         private string description;
         private string launchArgs;
 
@@ -38,6 +39,12 @@ namespace SkyforgeReforge
             get { return this.md5; }
         }
 
+        //The SHA512 of the updates binary
+        internal string SHA512
+        {
+            get { return this.sha512; }
+        }
+
         // The update's description
         internal string Description
         {
@@ -51,12 +58,13 @@ namespace SkyforgeReforge
         }
         
         // creates a new UpdateXML object
-        internal UpdateXML(Version version, Uri uri, string fileName, string md5, string description, string launchArgs)
+        internal UpdateXML(Version version, Uri uri, string fileName, string md5, string sha512, string description, string launchArgs)
         {
             this.version = version;
             this.uri = uri;
             this.fileName = fileName;
             this.md5 = md5;
+            this.sha512 = sha512;
             this.description = description;
             this.launchArgs = launchArgs;
         }
@@ -88,7 +96,7 @@ namespace SkyforgeReforge
         internal static UpdateXML Parse(Uri location, string appID)
         {
             Version version = null;
-            string url = "", fileName = "", md5 = "", description = "", launchArgs = "";
+            string url = "", fileName = "", md5 = "", sha512= "", description = "", launchArgs = "";
             try
             {
                 // Load the document
@@ -99,7 +107,7 @@ namespace SkyforgeReforge
                 // This allows you to store all your program's update nodes in one file
                 XmlNode node = doc.DocumentElement.SelectSingleNode("//update [@appId='" + appID + "']");
 
-                // If the note it doesn't exist, there is no update
+                // If the node doesn't exist, there is no update
                 if (node == null)
                 {
                     return null;
@@ -110,10 +118,11 @@ namespace SkyforgeReforge
                 url = node["url"].InnerText;
                 fileName = node["fileName"].InnerText;
                 md5 = node["md5"].InnerText;
+                sha512 = node["sha512"].InnerText;
                 description = node["description"].InnerText;
                 launchArgs = node["launchArgs"].InnerText;
 
-                return new UpdateXML(version, new Uri(url), fileName, md5, description, launchArgs);
+                return new UpdateXML(version, new Uri(url), fileName, md5, sha512, description, launchArgs);
             }
             catch
             {

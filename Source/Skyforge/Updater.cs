@@ -67,7 +67,7 @@ namespace SkyforgeReforge
         // this will run the update process
         private void DownloadUpdate(UpdateXML update)
         {
-            UpdateDownloadForm form = new UpdateDownloadForm(update.Uri, update.MD5, this.applicationInfo.ApplictionIcon);
+            UpdateDownloadForm form = new UpdateDownloadForm(update.Uri, update.MD5, update.SHA512, this.applicationInfo.ApplictionIcon);
             DialogResult result = form.ShowDialog(this.applicationInfo.Contex);
 
             if (result == DialogResult.OK)

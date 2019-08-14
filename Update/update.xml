@@ -9,21 +9,28 @@
         <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Master/Update/release_v0.0.0.0.exe</url>
         <fileName>Skyforge.exe</fileName>
         <md5>00000000000000000000000000000000</md5>
+		<sha512>00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</sha512>
         <description>Implemented features in this update:
         Placeholder
         </description>
         <launchArgs></launchArgs>
     </update>
     <update appId="SkyforgeDev">
-        <version>0.0.4.0</version>
+        <version>0.0.4.1</version>
         <!--
-        0.0.4.0 -> ?
+        0.0.4.1 -> ?
         ?
         -->
         <url>https://raw.githubusercontent.com/Trioxinz/Skyforge/Development/Update/DevelopmentUpdate.exe</url>
         <fileName>Skyforge.exe</fileName>
-        <md5>706d67cbdecffc52a034a02dc4a44bc8</md5>
+        <md5>1977e10375986f2238f07f9d16d65512</md5>
+		<sha512>9321d0adde39cb60708877ebba7e6b7ac1a97d15f1e538e1c48690d404cea6fe760dadd3782b0418000ff4132e245fc7e1de79baac1e6b40cfcb687e338a636d</sha512>
         <description>Implemented features in this update:
+		Minor fixes
+		Major build chain encryption change
+		Additional hashing and security for update subsystem
+		
+		Implemented features in previous Dev 0.0.4.0 update:
         Added folder logic
         Added basic Skyrim-NX-Tool function
         Fixed/tightened security

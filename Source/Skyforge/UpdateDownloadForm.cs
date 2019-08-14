@@ -23,6 +23,9 @@ namespace SkyforgeReforge
         // the md5 hash of the file to download
         private string md5;
 
+        // the sha512 hash of the file to download
+        private string sha512;
+
         // gets the temporary file path for the downloaded file
         internal string TempFilePath
         {
@@ -30,7 +33,7 @@ namespace SkyforgeReforge
         }
 
         // creates a new UpdateDownload form
-        internal UpdateDownloadForm(Uri location, string md5, Icon programIcon)
+        internal UpdateDownloadForm(Uri location, string md5, string sha512, Icon programIcon)
         {
             InitializeComponent();
 
@@ -43,7 +46,7 @@ namespace SkyforgeReforge
             temporaryFile = Path.GetTempFileName();
 
             this.md5 = md5;
-
+            this.sha512 = sha512;
 
             // creates the events for the web client
             webClient = new WebClient();
@@ -138,18 +141,19 @@ namespace SkyforgeReforge
                 labelProgress.Text = "Verifying download...";
                 progressBar.Style = ProgressBarStyle.Marquee;
 
-                backgroundWorker.RunWorkerAsync(new string[] { this.temporaryFile, this.md5 });
+                backgroundWorker.RunWorkerAsync(new string[] { this.temporaryFile, this.md5, this.sha512 });
             }
         }
 
 
-        // checks the MD5 hash sum of the download a file against the update file on the server
+        // checks the MD5 and SHA512 hash sums of the download a file against the update file on the server
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             string file = ((string[])e.Argument)[0];
             string updateMD5 = ((string[])e.Argument)[1];
+            string updateSHA512 = ((string[])e.Argument)[2];
 
-            if (Hasher.HaseFile(file, HashType.MD5) != updateMD5)
+            if ((Hasher.HaseFile(file, HashType.MD5) != updateMD5) && (Hasher.HaseFile(file, HashType.SHA512) != updateSHA512))
             {
                 e.Result = DialogResult.No;
             }
