@@ -10,8 +10,8 @@
         <fileName>Skyforge.exe</fileName>
         <md5>00000000000000000000000000000000</md5>
         <sha512>00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</sha512>
-        <description>Implemented features in this update:
-Placeholder
+        <description><![CDATA[Implemented features in this update:
+    Placeholder]]>
         </description>
         <launchArgs></launchArgs>
     </update>
