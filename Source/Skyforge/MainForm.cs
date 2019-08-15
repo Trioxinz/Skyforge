@@ -311,7 +311,7 @@ namespace Skyforge
                     }
                     else
                     {
-                        if ((fileExt == ".bsa") || (fileExt == ".esm") || (fileExt == ".esp") || (fileExt == ".pex") || (fileExt == ".dds") || (fileExt == ".lod") || (fileExt == ".strings") || (fileExt == ".dlstrings") || (fileExt == ".ilstrings"))
+                        if ((fileExt == ".bsa") || (fileExt == ".esm") || (fileExt == ".esp") || (fileExt == ".pex") || (fileExt == ".dds") || (fileExt == ".lod") || (fileExt == ".strings") || (fileExt == ".dlstrings") || (fileExt == ".ilstrings") || (fileExt == ".nif") || (fileExt == ".hkx") || (fileExt == ".fuz") || (fileExt == ".mcadpcm"))
                         {
                             string fileName = Path.GetFileName(file);
                             ListViewItem item = new ListViewItem(fileName);
